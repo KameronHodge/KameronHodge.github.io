@@ -1,0 +1,32 @@
+name: Deploy Godot Web Game
+on:
+  push:
+    branches:
+      - main  # Make sure this matches your branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Godot
+        uses: firebelley/godot-export@v5
+        with:
+          godot-version: 4.2.2  # Change to your Godot version
+          export-debug: false
+          cache: false
+          relative-project-path: project
+
+      - name: Upload HTML Export
+        uses: actions/upload-artifact@v3
+        with:
+          name: HTML5
+          path: build/web/
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/web/
