@@ -28,5 +28,9 @@ environment = SubResource("Environment_tbhi7")
 transform = Transform3D(0.941805, -1.4694e-08, -0.336158, -0.336158, -4.11676e-08, -0.941805, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_mytll")
 
+[node name="sword" parent="sword" instance=ExtResource("1_ru5jf")]
+transform = Transform3D(0.941805, -5.50331e-21, -0.336158, -0.336158, -4.11676e-08, -0.941805, 1.46939e-08, 1, -4.07888e-08, 7.59733, -1.18533e-07, -2.71171)
+script = ExtResource("2_mytll")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.52995, 20.6021)
