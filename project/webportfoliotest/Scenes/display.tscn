@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=7 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
-[ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/sword.gd" id="2_oe3w4"]
+[ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
+[ext_resource type="PackedScene" uid="uid://bgrryy6smq0q0" path="res://Assets/Weapons/Sword/newsword.tscn" id="3_oe3w4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -30,3 +31,7 @@ script = ExtResource("2_oe3w4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.52995, 20.6021)
+
+[node name="newsword" parent="." instance=ExtResource("3_oe3w4")]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, -7.8915, 6.30874, 0)
+script = ExtResource("2_oe3w4")
