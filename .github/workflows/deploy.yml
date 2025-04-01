@@ -1,95 +1,55 @@
-- name: Add cache-busting and service worker
+- name: Add cache-busting
         run: |
-          # Add COI service worker for cross-origin isolation
-          git clone --depth 1 https://github.com/gzuidhof/coi-serviceworker.git
-          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+          # Generate a unique version number based on timestamp
+          VERSION=$(date +%s)
 
-          # Generate a unique version number based on timestamp and git commit hash
-          TIMESTAMP=$(date +%s)
-          GIT_HASH=$(git rev-parse --short HEAD)
-          VERSION="${TIMESTAMP}-${GIT_HASH}"
+          # Apply version numbers to game files in index.html
+          sed -i "s/\.wasm/\.wasm?v=$VERSION/g" build/web/index.html
+          sed -i "s/\.pck/\.pck?v=$VERSION/g" build/web/index.html
+          sed -i "s/\.js/\.js?v=$VERSION/g" build/web/index.html
 
-          # Create a cache-busting service worker
-          cat > build/web/cache-service-worker.js << EOL
-          // Cache-busting service worker - Version: ${VERSION}
-
-          const CACHE_NAME = 'godot-game-cache-${VERSION}';
-
-          // Install event - precache critical files
-          self.addEventListener('install', (event) => {
-            event.waitUntil(
-              caches.open(CACHE_NAME).then((cache) => {
-                return cache.addAll([
-                  './',
-                  './index.html',
-                ]);
-              }).then(() => {
-                return self.skipWaiting();
-              })
-            );
-          });
-
-          // Activate event - clean up old caches
-          self.addEventListener('activate', (event) => {
-            event.waitUntil(
-              caches.keys().then((cacheNames) => {
-                return Promise.all(
-                  cacheNames.filter((cacheName) => {
-                    return cacheName.startsWith('godot-game-cache-') && cacheName !== CACHE_NAME;
-                  }).map((cacheName) => {
-                    return caches.delete(cacheName);
-                  })
-                );
-              }).then(() => {
-                return self.clients.claim();
-              })
-            );
-          });
-
-          // Fetch event - network first, then cache
-          self.addEventListener('fetch', (event) => {
-            event.respondWith(
-              fetch(event.request).catch(() => {
-                return caches.match(event.request);
-              })
-            );
-          });
-          EOL
-
-          # Add service worker registration to index.html
-          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
-          sed -i '4 i <script>
-            if ("serviceWorker" in navigator) {
-              window.addEventListener("load", () => {
-                navigator.serviceWorker.register("./cache-service-worker.js").then(reg => {
-                  console.log("Service worker registered:", reg);
-                }).catch(err => {
-                  console.error("Service worker registration failed:", err);
-                });
-              });
-            }
-          </script>' build/web/index.html
-
-          # Apply version numbers to all game files
-          sed -i "s/\.wasm/\.wasm?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.pck/\.pck?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.js/\.js?v=${VERSION}/g" build/web/index.html
-
-          # Also add versioning to potential asset files
-          sed -i "s/\.png/\.png?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.jpg/\.jpg?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.svg/\.svg?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.mp3/\.mp3?v=${VERSION}/g" build/web/index.html
-          sed -i "s/\.ogg/\.ogg?v=${VERSION}/g" build/web/index.html
-
-          # Add cache control headers for Netlify/Vercel/etc.
+          # Add standard no-cache headers (for servers that support _headers)
           echo "/*" > build/web/_headers
           echo "  Cache-Control: no-cache, no-store, must-revalidate" >> build/web/_headers
+          echo "  Pragma: no-cache" >> build/web/_headers
+          echo "  Expires: 0" >> build/web/_headers
 
-          # Add meta tags to discourage caching
-          sed -i '5 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
-          sed -i '6 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
-          sed -i '7 i <meta http-equiv="Expires" content="0" />' build/web/index.html
+          # Add meta tags to discourage browser caching
+          sed -i '4 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
+          sed -i '5 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
+          sed -i '6 i <meta http-equiv="Expires" content="0" />' build/web/index.html
 
-          # Create a version.txt file for debugging
-          echo "${VERSION}" > build/web/version.txt
+          # Create a no-cache.js file to attempt to clear cache on load
+          cat > build/web/no-cache.js << EOL
+          (function() {
+            // Try to clear application cache in browsers that support it
+            if (window.applicationCache && window.applicationCache.swapCache) {
+              try {
+                window.applicationCache.swapCache();
+              } catch (e) {
+                console.log('Failed to swap cache:', e);
+              }
+            }
+
+            // Add the script to the page
+            document.addEventListener('DOMContentLoaded', function() {
+              // Force reload if the version in local storage doesn't match
+              const currentVersion = '$VERSION';
+              const storedVersion = localStorage.getItem('game_version');
+
+              if (storedVersion && storedVersion !== currentVersion) {
+                console.log('New version detected. Reloading...');
+                localStorage.setItem('game_version', currentVersion);
+                window.location.reload(true);
+              } else {
+                localStorage.setItem('game_version', currentVersion);
+              }
+            });
+          })();
+          EOL
+
+          # Add the no-cache script to index.html
+          sed -i '7 i <script src="no-cache.js"></script>' build/web/index.html
+
+          # Add version as a comment in the HTML for debugging
+          sed -i "3 i <!-- Game Version: $VERSION -->" build/web/index.html
