@@ -1,32 +1,49 @@
-name: Deploy Godot Web Game
+name: "Publish to GitHub Pages"
+
+env:
+  GODOT_VERSION: 4.4.1
+
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main  # Make sure this matches your branch name
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    container:
+      image: barichello/godot-ci:4.1.2
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Godot
-        uses: firebelley/godot-export@v5
-        with:
-          godot-version: 4.4.1  # Change to your Godot version
-          export-debug: false
-          cache: false
-          relative-project-path: project
+      - name: Move HTML5 templates into position
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Create staging directory
+        run: mkdir -v -p build/web
 
-      - name: Upload HTML Export
-        uses: actions/upload-artifact@v3
-        with:
-          name: HTML5
-          path: build/web/
+      - name: Build
+        run: godot -v --export-release --headless "Web" ../build/web/index.html project/project.godot
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Add coi-service-worker
+        run: |
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.9.3
         with:
-          branch: gh-pages
-          folder: build/web/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          force_orphan: true
+          user_name: "github-ci[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "Publish to gh-pages"
