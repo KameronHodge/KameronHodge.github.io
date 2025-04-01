@@ -14,7 +14,7 @@ jobs:
       - name: Set up Godot
         uses: firebelley/godot-export@v5
         with:
-          godot-version: 4.2.2  # Change to your Godot version
+          godot-version: 4.4.1  # Change to your Godot version
           export-debug: false
           cache: false
           relative-project-path: project
