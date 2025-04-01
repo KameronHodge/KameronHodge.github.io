@@ -1,55 +1,75 @@
-- name: Add cache-busting
+name: "Publish to GitHub Pages"
+
+env:
+  GODOT_VERSION: 4.4.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    container:
+      image: barichello/godot-ci:4.4.1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Move HTML5 templates into position
         run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Create staging directory
+        run: mkdir -v -p build/web
+
+      - name: Build
+        run: |
+          cd project/webportfoliotest
+          godot -v --export-release --headless "Web" ../../build/web/index.html
+
+      - name: Add cache-busting and service worker
+        run: |
+          # Add COI service worker for cross-origin isolation
+          git clone --depth 1 https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+
           # Generate a unique version number based on timestamp
           VERSION=$(date +%s)
 
-          # Apply version numbers to game files in index.html
+          # Add service worker reference and apply version numbers to game files
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
           sed -i "s/\.wasm/\.wasm?v=$VERSION/g" build/web/index.html
           sed -i "s/\.pck/\.pck?v=$VERSION/g" build/web/index.html
           sed -i "s/\.js/\.js?v=$VERSION/g" build/web/index.html
 
-          # Add standard no-cache headers (for servers that support _headers)
+          # Add cache control headers
           echo "/*" > build/web/_headers
           echo "  Cache-Control: no-cache, no-store, must-revalidate" >> build/web/_headers
           echo "  Pragma: no-cache" >> build/web/_headers
           echo "  Expires: 0" >> build/web/_headers
 
-          # Add meta tags to discourage browser caching
+          # Add meta tags to discourage caching
           sed -i '4 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
           sed -i '5 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
           sed -i '6 i <meta http-equiv="Expires" content="0" />' build/web/index.html
 
-          # Create a no-cache.js file to attempt to clear cache on load
-          cat > build/web/no-cache.js << EOL
-          (function() {
-            // Try to clear application cache in browsers that support it
-            if (window.applicationCache && window.applicationCache.swapCache) {
-              try {
-                window.applicationCache.swapCache();
-              } catch (e) {
-                console.log('Failed to swap cache:', e);
-              }
-            }
-
-            // Add the script to the page
-            document.addEventListener('DOMContentLoaded', function() {
-              // Force reload if the version in local storage doesn't match
-              const currentVersion = '$VERSION';
-              const storedVersion = localStorage.getItem('game_version');
-
-              if (storedVersion && storedVersion !== currentVersion) {
-                console.log('New version detected. Reloading...');
-                localStorage.setItem('game_version', currentVersion);
-                window.location.reload(true);
-              } else {
-                localStorage.setItem('game_version', currentVersion);
-              }
-            });
-          })();
-          EOL
-
-          # Add the no-cache script to index.html
-          sed -i '7 i <script src="no-cache.js"></script>' build/web/index.html
-
           # Add version as a comment in the HTML for debugging
-          sed -i "3 i <!-- Game Version: $VERSION -->" build/web/index.html
+          sed -i "7 i <!-- Game Version: $VERSION -->" build/web/index.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          force_orphan: true
+          user_name: "github-ci[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "Publish to gh-pages"
