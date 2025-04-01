@@ -18,14 +18,14 @@ tonemap_mode = 2
 [node name="Display" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -21.02, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -11.389, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tbhi7")
 
 [node name="sword" parent="." instance=ExtResource("1_odar2")]
-transform = Transform3D(0.941805, -1.4694e-08, -0.336158, -0.336158, -4.11676e-08, -0.941805, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.999999, 0, 0, 0, -4.37114e-08, -0.999999, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("2_oe3w4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
