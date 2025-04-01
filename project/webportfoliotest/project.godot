@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="WebPortfolioTest"
-run/main_scene="res://display.tscn"
+run/main_scene="res://Scenes/display.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Scenes/": "teal",
+"res://Scripts/": "blue"
+}
 
 [rendering]
 

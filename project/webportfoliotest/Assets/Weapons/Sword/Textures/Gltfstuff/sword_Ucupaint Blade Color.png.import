@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhjhgsgs8uiou"
-path.s3tc="res://.godot/imported/sword_Ucupaint Blade Color.png-3c6c7dcca0621ba02b7ac30c654d2f4c.s3tc.ctex"
+path.s3tc="res://.godot/imported/sword_Ucupaint Blade Color.png-f8bbdfd577b8c820fb6f9609a5c0937a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://sword_Ucupaint Blade Color.png"
-dest_files=["res://.godot/imported/sword_Ucupaint Blade Color.png-3c6c7dcca0621ba02b7ac30c654d2f4c.s3tc.ctex"]
+source_file="res://Assets/Weapons/Sword/Textures/Gltfstuff/sword_Ucupaint Blade Color.png"
+dest_files=["res://.godot/imported/sword_Ucupaint Blade Color.png-f8bbdfd577b8c820fb6f9609a5c0937a.s3tc.ctex"]
 
 [params]
 
