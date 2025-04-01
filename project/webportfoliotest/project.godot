@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 folder_colors={
 "res://Assets/": "red",
+"res://Assets/Weapons/Sword/Textures/": "yellow",
 "res://Scenes/": "teal",
 "res://Scripts/": "blue"
 }

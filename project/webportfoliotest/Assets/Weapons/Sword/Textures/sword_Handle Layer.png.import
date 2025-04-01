@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck1lyn6yeyqm8"
-path.s3tc="res://.godot/imported/sword_Ucupaint Hilt Color.png-d10885cc7d0c319a2f0172685eb476f7.s3tc.ctex"
+uid="uid://cmv78w55hadg3"
+path.s3tc="res://.godot/imported/sword_Handle Layer.png-c6512f9c4718f51c1d6e790b0580dcfd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "62a920835ca62d4a2b213669f077947c"
+"md5": "b5cfa9d6c8febd618f91ac2843d50a1c"
 }
 
 [deps]
 
-source_file="res://Assets/Weapons/Sword/Textures/Gltfstuff/sword_Ucupaint Hilt Color.png"
-dest_files=["res://.godot/imported/sword_Ucupaint Hilt Color.png-d10885cc7d0c319a2f0172685eb476f7.s3tc.ctex"]
+source_file="res://Assets/Weapons/Sword/Textures/sword_Handle Layer.png"
+dest_files=["res://.godot/imported/sword_Handle Layer.png-c6512f9c4718f51c1d6e790b0580dcfd.s3tc.ctex"]
 
 [params]
 

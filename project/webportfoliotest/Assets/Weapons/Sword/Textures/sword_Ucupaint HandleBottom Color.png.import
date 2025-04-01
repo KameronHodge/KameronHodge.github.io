@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fico1o4tnctt"
-path.s3tc="res://.godot/imported/sword_Ucupaint HandleBottom Color.png-5181a8bae3412856b1b5a57f16a34751.s3tc.ctex"
+path.s3tc="res://.godot/imported/sword_Ucupaint HandleBottom Color.png-895ae91319719415740bb120dd2eb2cc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/Weapons/Sword/Textures/Gltfstuff/sword_Ucupaint HandleBottom Color.png"
-dest_files=["res://.godot/imported/sword_Ucupaint HandleBottom Color.png-5181a8bae3412856b1b5a57f16a34751.s3tc.ctex"]
+source_file="res://Assets/Weapons/Sword/Textures/sword_Ucupaint HandleBottom Color.png"
+dest_files=["res://.godot/imported/sword_Ucupaint HandleBottom Color.png-895ae91319719415740bb120dd2eb2cc.s3tc.ctex"]
 
 [params]
 
