@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=8 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
 [ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
 [ext_resource type="PackedScene" uid="uid://6lkov81ery6l" path="res://Assets/Weapons/Sword/newsword.tscn" id="3_oe3w4"]
+[ext_resource type="PackedScene" uid="uid://dvkhfuq5mcrj1" path="res://Assets/Weapons/Sword/bettersword.tscn" id="4_us5k4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -33,5 +34,9 @@ script = ExtResource("2_oe3w4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.52995, 20.6021)
 
 [node name="newsword" parent="." instance=ExtResource("3_oe3w4")]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, -7.22162, 6.85309, 0)
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, -8.00417, 6.85309, 0)
+script = ExtResource("2_oe3w4")
+
+[node name="bettersword" parent="." instance=ExtResource("4_us5k4")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 8.02112, 4.56265, 0)
 script = ExtResource("2_oe3w4")

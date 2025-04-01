@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvkhfuq5mcrj1"]
+
+[ext_resource type="PackedScene" uid="uid://o54yuv8mnnpb" path="res://Assets/Weapons/Sword/Gltfstuff/bettersword.glb" id="1_e8kdh"]
+
+[node name="bettersword" instance=ExtResource("1_e8kdh")]
