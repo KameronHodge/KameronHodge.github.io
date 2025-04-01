@@ -35,34 +35,135 @@ jobs:
           cd project/webportfoliotest
           godot -v --export-release --headless "Web" ../../build/web/index.html
 
-      - name: Add cache-busting and service worker
+      - name: Add aggressive cache-busting
         run: |
-          # Add COI service worker for cross-origin isolation
+          # Clone COI service worker
           git clone --depth 1 https://github.com/gzuidhof/coi-serviceworker.git
           mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
 
-          # Generate a unique version number based on timestamp
-          VERSION=$(date +%s)
+          # Generate unique cache-busting identifiers
+          TIMESTAMP=$(date +%s)
+          RANDOM_STRING=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+          VERSION="${TIMESTAMP}-${RANDOM_STRING}"
 
-          # Add service worker reference and apply version numbers to game files
-          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
-          sed -i "s/\.wasm/\.wasm?v=$VERSION/g" build/web/index.html
-          sed -i "s/\.pck/\.pck?v=$VERSION/g" build/web/index.html
-          sed -i "s/\.js/\.js?v=$VERSION/g" build/web/index.html
+          # Create a new filename for each asset with version embedded in name
+          mkdir -p build/web/v${VERSION}
 
-          # Add cache control headers
-          echo "/*" > build/web/_headers
-          echo "  Cache-Control: no-cache, no-store, must-revalidate" >> build/web/_headers
-          echo "  Pragma: no-cache" >> build/web/_headers
-          echo "  Expires: 0" >> build/web/_headers
+          # For JavaScript files
+          for js_file in build/web/*.js; do
+            if [ -f "$js_file" ] && [ "$(basename "$js_file")" != "coi-serviceworker.js" ]; then
+              filename=$(basename "$js_file")
+              cp "$js_file" "build/web/v${VERSION}/${filename}"
+              # Update references in index.html
+              sed -i "s|$filename|v${VERSION}/$filename|g" build/web/index.html
+            fi
+          done
 
-          # Add meta tags to discourage caching
-          sed -i '4 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
-          sed -i '5 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
-          sed -i '6 i <meta http-equiv="Expires" content="0" />' build/web/index.html
+          # For WASM files
+          for wasm_file in build/web/*.wasm; do
+            if [ -f "$wasm_file" ]; then
+              filename=$(basename "$wasm_file")
+              cp "$wasm_file" "build/web/v${VERSION}/${filename}"
+              # Update references in index.html
+              sed -i "s|$filename|v${VERSION}/$filename|g" build/web/index.html
+            fi
+          done
 
-          # Add version as a comment in the HTML for debugging
-          sed -i "7 i <!-- Game Version: $VERSION -->" build/web/index.html
+          # For PCK files
+          for pck_file in build/web/*.pck; do
+            if [ -f "$pck_file" ]; then
+              filename=$(basename "$pck_file")
+              cp "$pck_file" "build/web/v${VERSION}/${filename}"
+              # Update references in index.html
+              sed -i "s|$filename|v${VERSION}/$filename|g" build/web/index.html
+            fi
+          done
+
+          # Add COI service worker script tag
+          sed -i '3i <script src="coi-serviceworker.js"></script>' build/web/index.html
+
+          # Create a localStorage-based cache checker that forces reload
+          cat > build/web/force-refresh.js << EOL
+          (function() {
+            // Store the current version
+            const CURRENT_VERSION = '${VERSION}';
+
+            // Check if we need to force a refresh
+            function checkForRefresh() {
+              const lastVersion = localStorage.getItem('godot_game_version');
+
+              // If version is different or doesn't exist, update and reload
+              if (lastVersion !== CURRENT_VERSION) {
+                console.log('New version detected: ' + CURRENT_VERSION);
+
+                // Clear any existing caches if Cache API is available
+                if ('caches' in window) {
+                  caches.keys().then(function(cacheNames) {
+                    return Promise.all(
+                      cacheNames.map(function(cacheName) {
+                        console.log('Deleting cache: ' + cacheName);
+                        return caches.delete(cacheName);
+                      })
+                    );
+                  });
+                }
+
+                // Save the new version
+                localStorage.setItem('godot_game_version', CURRENT_VERSION);
+
+                // Force a hard reload if not initial load
+                if (lastVersion) {
+                  console.log('Forcing page reload');
+
+                  // For Firefox - this is a more aggressive approach
+                  window.location.href = window.location.href.split('?')[0] +
+                    '?cachebust=' + CURRENT_VERSION + '&time=' + Date.now();
+                  return true;
+                }
+              }
+
+              return false;
+            }
+
+            // Run check immediately and prevent caching
+            if (!checkForRefresh()) {
+              // Prevent browser back-forward cache
+              window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                  console.log('Page was loaded from cache - checking version');
+                  checkForRefresh();
+                }
+              });
+
+              // Check again when visibility changes (user returns to tab)
+              document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                  console.log('Page visibility changed - checking version');
+                  checkForRefresh();
+                }
+              });
+            }
+          })();
+          EOL
+
+          # Add the refresh script to index.html
+          sed -i '3i <script src="force-refresh.js"></script>' build/web/index.html
+
+          # Create meta tags to prevent caching (more aggressive)
+          sed -i '3i <meta http-equiv="Pragma" content="no-cache">' build/web/index.html
+          sed -i '3i <meta http-equiv="Expires" content="-1">' build/web/index.html
+          sed -i '3i <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">' build/web/index.html
+
+          # Create a _headers file for Netlify/Vercel/etc.
+          cat > build/web/_headers << EOL
+          /*
+            Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
+            Pragma: no-cache
+            Expires: 0
+          EOL
+
+          # Add version info comment
+          sed -i "1i <!-- Game Version: ${VERSION} -->" build/web/index.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.9.3
