@@ -1,70 +1,95 @@
-name: "Publish to GitHub Pages"
-
-env:
-  GODOT_VERSION: 4.4.1
-
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    container:
-      image: barichello/godot-ci:4.4.1
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Move HTML5 templates into position
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-
-      - name: Create staging directory
-        run: mkdir -v -p build/web
-
-      - name: Build
-        run: |
-          cd project/webportfoliotest
-          godot -v --export-release --headless "Web" ../../build/web/index.html
-
-      - name: Add cache-busting and service worker
+- name: Add cache-busting and service worker
         run: |
           # Add COI service worker for cross-origin isolation
           git clone --depth 1 https://github.com/gzuidhof/coi-serviceworker.git
           mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
 
-          # Generate a unique version number based on timestamp
-          VERSION=$(date +%s)
+          # Generate a unique version number based on timestamp and git commit hash
+          TIMESTAMP=$(date +%s)
+          GIT_HASH=$(git rev-parse --short HEAD)
+          VERSION="${TIMESTAMP}-${GIT_HASH}"
 
-          # Add service worker reference and apply version numbers to game files
+          # Create a cache-busting service worker
+          cat > build/web/cache-service-worker.js << EOL
+          // Cache-busting service worker - Version: ${VERSION}
+
+          const CACHE_NAME = 'godot-game-cache-${VERSION}';
+
+          // Install event - precache critical files
+          self.addEventListener('install', (event) => {
+            event.waitUntil(
+              caches.open(CACHE_NAME).then((cache) => {
+                return cache.addAll([
+                  './',
+                  './index.html',
+                ]);
+              }).then(() => {
+                return self.skipWaiting();
+              })
+            );
+          });
+
+          // Activate event - clean up old caches
+          self.addEventListener('activate', (event) => {
+            event.waitUntil(
+              caches.keys().then((cacheNames) => {
+                return Promise.all(
+                  cacheNames.filter((cacheName) => {
+                    return cacheName.startsWith('godot-game-cache-') && cacheName !== CACHE_NAME;
+                  }).map((cacheName) => {
+                    return caches.delete(cacheName);
+                  })
+                );
+              }).then(() => {
+                return self.clients.claim();
+              })
+            );
+          });
+
+          // Fetch event - network first, then cache
+          self.addEventListener('fetch', (event) => {
+            event.respondWith(
+              fetch(event.request).catch(() => {
+                return caches.match(event.request);
+              })
+            );
+          });
+          EOL
+
+          # Add service worker registration to index.html
           sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
-          sed -i "s/\.wasm/\.wasm?v=$VERSION/g" build/web/index.html
-          sed -i "s/\.pck/\.pck?v=$VERSION/g" build/web/index.html
-          sed -i "s/\.js/\.js?v=$VERSION/g" build/web/index.html
+          sed -i '4 i <script>
+            if ("serviceWorker" in navigator) {
+              window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./cache-service-worker.js").then(reg => {
+                  console.log("Service worker registered:", reg);
+                }).catch(err => {
+                  console.error("Service worker registration failed:", err);
+                });
+              });
+            }
+          </script>' build/web/index.html
 
-          # Add cache control headers
+          # Apply version numbers to all game files
+          sed -i "s/\.wasm/\.wasm?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.pck/\.pck?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.js/\.js?v=${VERSION}/g" build/web/index.html
+
+          # Also add versioning to potential asset files
+          sed -i "s/\.png/\.png?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.jpg/\.jpg?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.svg/\.svg?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.mp3/\.mp3?v=${VERSION}/g" build/web/index.html
+          sed -i "s/\.ogg/\.ogg?v=${VERSION}/g" build/web/index.html
+
+          # Add cache control headers for Netlify/Vercel/etc.
           echo "/*" > build/web/_headers
-          echo "  Cache-Control: max-age=3600" >> build/web/_headers
+          echo "  Cache-Control: no-cache, no-store, must-revalidate" >> build/web/_headers
 
           # Add meta tags to discourage caching
-          sed -i '4 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
-          sed -i '5 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
-          sed -i '6 i <meta http-equiv="Expires" content="0" />' build/web/index.html
+          sed -i '5 i <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' build/web/index.html
+          sed -i '6 i <meta http-equiv="Pragma" content="no-cache" />' build/web/index.html
+          sed -i '7 i <meta http-equiv="Expires" content="0" />' build/web/index.html
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.9.3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          force_orphan: true
-          user_name: "github-ci[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_message: "Publish to gh-pages"
+          # Create a version.txt file for debugging
+          echo "${VERSION}" > build/web/version.txt
