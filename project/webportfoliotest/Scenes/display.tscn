@@ -30,18 +30,18 @@ shadow_enabled = true
 environment = SubResource("Environment_tbhi7")
 
 [node name="sword" parent="." instance=ExtResource("1_odar2")]
-transform = Transform3D(0.999999, 0, 0, 0, -4.37114e-08, -0.999999, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.490167, 0, 0, 0, -2.14259e-08, -0.490167, 0, 0.490167, -2.14259e-08, 0.00288275, -2.42239, 0)
 script = ExtResource("2_oe3w4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.52995, 20.6021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09605, 10.0638)
 
 [node name="newsword" parent="." instance=ExtResource("3_oe3w4")]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, -8.00417, 6.85309, 0)
+transform = Transform3D(2.45084, 0, 0, 0, -1.07129e-07, 2.45084, 0, -2.45084, -1.07129e-07, -3.9205, 0.936775, 0)
 script = ExtResource("2_oe3w4")
 
 [node name="bettersword" parent="." instance=ExtResource("4_us5k4")]
-transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 8.02112, 4.56265, 0)
+transform = Transform3D(3.43117, 0, 0, 0, 3.43117, 0, 0, 0, 3.43117, 3.93457, -0.185922, 0)
 script = ExtResource("2_oe3w4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
