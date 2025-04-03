@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=10 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
 [ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
 [ext_resource type="PackedScene" uid="uid://6lkov81ery6l" path="res://Assets/Weapons/Sword/newsword.tscn" id="3_oe3w4"]
 [ext_resource type="PackedScene" uid="uid://dvkhfuq5mcrj1" path="res://Assets/Weapons/Sword/bettersword.tscn" id="4_us5k4"]
+[ext_resource type="PackedScene" uid="uid://1lmkqo8jtwpk" path="res://Assets/Nature/Rocks/low_poly_rock.tscn" id="5_xptpx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -48,3 +49,17 @@ script = ExtResource("2_oe3w4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.6094, -5, -348.997)
 material_override = SubResource("StandardMaterial3D_us5k4")
 size = Vector3(2541.09, 1, 730.984)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="low poly rock" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(-46.6937, 0, 17.8801, 0, 50, 0, -17.8801, 0, -46.6937, 112.333, -25.8824, -121.801)
+
+[node name="low poly rock2" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(36.7546, 0, 33.8984, 0, 50, 0, -33.8984, 0, 36.7546, 51.9747, -25.8824, -121.801)
+
+[node name="low poly rock3" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(47.94, 0, -14.2041, 0, 50, 0, 14.2041, 0, 47.94, -71.0689, -25.8824, -105.975)
+
+[node name="low poly rock4" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(-34.0143, 0, -36.6473, 0, 50, 0, 36.6473, 0, -34.0143, -10.8923, -25.8824, -110.657)
