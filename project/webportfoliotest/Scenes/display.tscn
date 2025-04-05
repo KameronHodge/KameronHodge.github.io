@@ -66,7 +66,7 @@ transform = Transform3D(47.94, 0, -14.2041, 0, 50, 0, 14.2041, 0, 47.94, -71.068
 transform = Transform3D(-34.0143, 0, -36.6473, 0, 50, 0, 36.6473, 0, -34.0143, -10.8923, -25.8824, -110.657)
 
 [node name="lantern" parent="." instance=ExtResource("6_exjqb")]
-transform = Transform3D(-1.4487e-08, 0, -0.331424, 0, 0.331424, 0, 0.331424, 0, -1.4487e-08, -1.80227, -2.27261, 3.07964)
+transform = Transform3D(-1.4487e-08, 0, -0.331424, 0, 0.331424, 0, 0.331424, 0, -1.4487e-08, -1.80227, -2.27261, -4.28642)
 script = ExtResource("2_oe3w4")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="lantern"]
