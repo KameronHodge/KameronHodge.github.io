@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://byplahc050gsk"]
+
+[ext_resource type="PackedScene" uid="uid://cnrvrk08y4xi8" path="res://Assets/Lanterns/lantern.glb" id="1_kxgpu"]
+
+[node name="lantern" instance=ExtResource("1_kxgpu")]
