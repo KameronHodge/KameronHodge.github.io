@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=12 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
 [ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
@@ -21,6 +21,11 @@ tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us5k4"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exjqb"]
+diffuse_mode = 3
+specular_mode = 1
+roughness = 0.0
 
 [node name="Display" type="Node3D"]
 
@@ -74,3 +79,7 @@ light_color = Color(0.197465, 1, 0.672676, 1)
 light_energy = 1.669
 omni_range = 6.646
 omni_attenuation = -0.445
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6958, 0, 0)
+material_override = SubResource("StandardMaterial3D_exjqb")
