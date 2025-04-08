@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=13 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
 [ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvkhfuq5mcrj1" path="res://Assets/Weapons/Sword/bettersword.tscn" id="4_us5k4"]
 [ext_resource type="PackedScene" uid="uid://1lmkqo8jtwpk" path="res://Assets/Nature/Rocks/low_poly_rock.tscn" id="5_xptpx"]
 [ext_resource type="PackedScene" uid="uid://byplahc050gsk" path="res://Assets/Lanterns/lantern.tscn" id="6_exjqb"]
+[ext_resource type="PackedScene" uid="uid://ddy54xq522bh5" path="res://tree_base.tscn" id="7_ieymp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -83,3 +84,6 @@ omni_attenuation = -0.445
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6958, 0, 0)
 material_override = SubResource("StandardMaterial3D_exjqb")
+
+[node name="tree base" parent="." instance=ExtResource("7_ieymp")]
+transform = Transform3D(-1.55729, -0.0184073, 1.9194, -0.0102188, 2.47169, 0.0154129, -1.91946, 0.00177546, -1.55732, -10.8828, -4.88951, -34.0386)
