@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://48gp4hcsjycx"
-path.s3tc="res://.godot/imported/tree base_DefaultMaterial_MaskMap.png-143cf4c72f039a70e87ba3a295d95456.s3tc.ctex"
+uid="uid://bvjljdx2k57qa"
+path.s3tc="res://.godot/imported/tree canopy_leaftexture.png-e9a9a165e345f4c387c537dd4a9023da.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "71c939e1a18b2f040bb7b5793c6fed22"
+}
 
 [deps]
 
-source_file="res://tree base_DefaultMaterial_MaskMap.png"
-dest_files=["res://.godot/imported/tree base_DefaultMaterial_MaskMap.png-143cf4c72f039a70e87ba3a295d95456.s3tc.ctex"]
+source_file="res://Assets/Nature/Tree/tree canopy_leaftexture.png"
+dest_files=["res://.godot/imported/tree canopy_leaftexture.png-e9a9a165e345f4c387c537dd4a9023da.s3tc.ctex"]
 
 [params]
 

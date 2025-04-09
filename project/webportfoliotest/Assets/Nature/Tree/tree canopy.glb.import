@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cl4jkchbwusm0"
-path="res://.godot/imported/tree base.glb-6929b1dbf7b91f25b61625ec5f2e91f0.scn"
+uid="uid://cws21xujwmuny"
+path="res://.godot/imported/tree canopy.glb-08a07b36cdec233f0706c2c36b89067a.scn"
 
 [deps]
 
-source_file="res://tree base.glb"
-dest_files=["res://.godot/imported/tree base.glb-6929b1dbf7b91f25b61625ec5f2e91f0.scn"]
+source_file="res://Assets/Nature/Tree/tree canopy.glb"
+dest_files=["res://.godot/imported/tree canopy.glb-08a07b36cdec233f0706c2c36b89067a.scn"]
 
 [params]
 
