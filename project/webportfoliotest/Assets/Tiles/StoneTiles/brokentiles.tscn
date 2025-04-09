@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj1o5ray7msud"]
 
-[ext_resource type="PackedScene" uid="uid://d01veeexgdo1y" path="res://Tiles/brokentiles.glb" id="1_ceud8"]
-[ext_resource type="Texture2D" uid="uid://dbsigltkigrr2" path="res://Tiles/DefaultMaterial_BaseColor.png" id="2_w71m8"]
-[ext_resource type="Texture2D" uid="uid://c3g6ybdfrtfi6" path="res://Tiles/DefaultMaterial_Normal.png" id="4_xsxsd"]
+[ext_resource type="PackedScene" uid="uid://d01veeexgdo1y" path="res://Assets/Tiles/StoneTiles/brokentiles.glb" id="1_ceud8"]
+[ext_resource type="Texture2D" uid="uid://dbsigltkigrr2" path="res://Assets/Tiles/StoneTiles/DefaultMaterial_BaseColor.png" id="2_w71m8"]
+[ext_resource type="Texture2D" uid="uid://c3g6ybdfrtfi6" path="res://Assets/Tiles/StoneTiles/DefaultMaterial_Normal.png" id="4_xsxsd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afpd3"]
 albedo_color = Color(0.400698, 0.400698, 0.400698, 1)

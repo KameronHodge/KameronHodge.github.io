@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbsigltkigrr2"
-path.s3tc="res://.godot/imported/DefaultMaterial_BaseColor.png-25a296204a864d74cbc3014bec937be5.s3tc.ctex"
+uid="uid://br3ahij76jjta"
+path="res://.godot/imported/DefaultMaterial_Emission.png-b491e16d57d702e6d14fef004df5831b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/DefaultMaterial_BaseColor.png"
-dest_files=["res://.godot/imported/DefaultMaterial_BaseColor.png-25a296204a864d74cbc3014bec937be5.s3tc.ctex"]
+source_file="res://Assets/Tiles/StoneTiles/DefaultMaterial_Emission.png"
+dest_files=["res://.godot/imported/DefaultMaterial_Emission.png-b491e16d57d702e6d14fef004df5831b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

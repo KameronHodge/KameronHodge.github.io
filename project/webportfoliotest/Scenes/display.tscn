@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1lmkqo8jtwpk" path="res://Assets/Nature/Rocks/low_poly_rock.tscn" id="5_xptpx"]
 [ext_resource type="PackedScene" uid="uid://byplahc050gsk" path="res://Assets/Lanterns/lantern.tscn" id="6_exjqb"]
 [ext_resource type="PackedScene" uid="uid://ddy54xq522bh5" path="res://Assets/Nature/Tree/tree_base.tscn" id="7_ieymp"]
-[ext_resource type="PackedScene" uid="uid://cj1o5ray7msud" path="res://Tiles/brokentiles.tscn" id="7_lc0ps"]
+[ext_resource type="PackedScene" uid="uid://cj1o5ray7msud" path="res://Assets/Tiles/StoneTiles/brokentiles.tscn" id="7_lc0ps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

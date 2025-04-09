@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfp20qbfr3sti"
-path.s3tc="res://.godot/imported/DefaultMaterial_Metallic.png-46fa5ff454d964227450fc6a79e62c4a.s3tc.ctex"
+uid="uid://c3g6ybdfrtfi6"
+path.s3tc="res://.godot/imported/DefaultMaterial_Normal.png-7d4f7f1ebf6dcc0bccfea817549c0fa7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Tiles/DefaultMaterial_Metallic.png"
-dest_files=["res://.godot/imported/DefaultMaterial_Metallic.png-46fa5ff454d964227450fc6a79e62c4a.s3tc.ctex"]
+source_file="res://Assets/Tiles/StoneTiles/DefaultMaterial_Normal.png"
+dest_files=["res://.godot/imported/DefaultMaterial_Normal.png-7d4f7f1ebf6dcc0bccfea817549c0fa7.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Tiles/DefaultMaterial_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

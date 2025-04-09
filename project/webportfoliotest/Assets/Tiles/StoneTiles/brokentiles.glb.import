@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d01veeexgdo1y"
-path="res://.godot/imported/brokentiles.glb-aad54ad56bc2ae1db6e79be3fa0c5df3.scn"
+path="res://.godot/imported/brokentiles.glb-ff587e59b7e8c0c841e6b9a7779b0dab.scn"
 
 [deps]
 
-source_file="res://Tiles/brokentiles.glb"
-dest_files=["res://.godot/imported/brokentiles.glb-aad54ad56bc2ae1db6e79be3fa0c5df3.scn"]
+source_file="res://Assets/Tiles/StoneTiles/brokentiles.glb"
+dest_files=["res://.godot/imported/brokentiles.glb-ff587e59b7e8c0c841e6b9a7779b0dab.scn"]
 
 [params]
 
