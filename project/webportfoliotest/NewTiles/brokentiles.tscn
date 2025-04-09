@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn2272y6ey5oj"]
+
+[ext_resource type="PackedScene" uid="uid://cmcboau2qjajm" path="res://NewTiles/brokentiles.glb" id="1_yurey"]
+[ext_resource type="Texture2D" uid="uid://cea656ihbvyd5" path="res://NewTiles/DefaultMaterial_BaseColor.png" id="2_4l171"]
+[ext_resource type="Texture2D" uid="uid://d2xi2bo175nxj" path="res://NewTiles/DefaultMaterial_Metallic.png" id="3_xe3ac"]
+[ext_resource type="Texture2D" uid="uid://cygn27innam8j" path="res://NewTiles/DefaultMaterial_Normal.png" id="4_pnwd7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orgaw"]
+albedo_texture = ExtResource("2_4l171")
+metallic = 1.0
+metallic_texture = ExtResource("3_xe3ac")
+normal_scale = -0.57
+normal_texture = ExtResource("4_pnwd7")
+
+[node name="brokentiles" instance=ExtResource("1_yurey")]
+
+[node name="Cube_043" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")
+
+[node name="Cube_002" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")
+
+[node name="Cube_003" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")
+
+[node name="Cube_004" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")
+
+[node name="Cube_005" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_orgaw")

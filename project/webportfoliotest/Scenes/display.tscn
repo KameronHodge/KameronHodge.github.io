@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnmby3vnmtffu"]
+[gd_scene load_steps=14 format=3 uid="uid://cnmby3vnmtffu"]
 
 [ext_resource type="PackedScene" uid="uid://tgruy6eujs1q" path="res://Assets/Weapons/Sword/sword.tscn" id="1_odar2"]
 [ext_resource type="Script" uid="uid://c2d2k5lbn84e6" path="res://Scripts/RotateScript.gd" id="2_oe3w4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://byplahc050gsk" path="res://Assets/Lanterns/lantern.tscn" id="6_exjqb"]
 [ext_resource type="PackedScene" uid="uid://ddy54xq522bh5" path="res://Assets/Nature/Tree/tree_base.tscn" id="7_ieymp"]
 [ext_resource type="PackedScene" uid="uid://cj1o5ray7msud" path="res://Assets/Tiles/StoneTiles/brokentiles.tscn" id="7_lc0ps"]
+[ext_resource type="PackedScene" uid="uid://bn2272y6ey5oj" path="res://NewTiles/brokentiles.tscn" id="8_lc0ps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ru5jf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -93,97 +94,111 @@ transform = Transform3D(-1.55729, -0.0184073, 1.9194, -0.0102188, 2.47169, 0.015
 [node name="Tiles" type="Node" parent="."]
 
 [node name="brokentiles" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97729, -4.47482, -7.1983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97729, -4.47482, 131.619)
 
 [node name="brokentiles2" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91397, -4.47482, 14.9077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91397, -4.47482, 153.725)
 
 [node name="brokentiles3" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.1425, -4.47482, -4.83016)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.1425, -4.47482, 133.987)
 
 [node name="brokentiles4" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.1425, -4.47482, -26.9362)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.1425, -4.47482, 111.881)
 
 [node name="brokentiles5" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 68.6086, -4.47482, -26.9974)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 68.6086, -4.47482, 111.82)
 
 [node name="brokentiles6" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46.5026, -4.47482, -26.9974)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46.5026, -4.47482, 111.82)
 
 [node name="brokentiles7" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 66.2404, -4.47482, 14.9689)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 66.2404, -4.47482, 153.786)
 
 [node name="brokentiles8" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 88.3464, -4.47482, 14.9689)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 88.3464, -4.47482, 153.786)
 
 [node name="brokentiles9" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 88.4077, -4.47482, -49.1774)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 88.4077, -4.47482, 89.6396)
 
 [node name="brokentiles10" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 88.4077, -4.47482, -71.2834)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 88.4077, -4.47482, 67.5336)
 
 [node name="brokentiles11" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 46.4413, -4.47482, -51.5455)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 46.4413, -4.47482, 87.2715)
 
 [node name="brokentiles12" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 46.4413, -4.47482, -29.4395)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 46.4413, -4.47482, 109.378)
 
 [node name="brokentiles13" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 21.9753, -4.47482, -29.3783)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 21.9753, -4.47482, 109.439)
 
 [node name="brokentiles14" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 44.0813, -4.47482, -29.3783)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 44.0813, -4.47482, 109.439)
 
 [node name="brokentiles15" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 24.3435, -4.47482, -71.3446)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 24.3435, -4.47482, 67.4724)
 
 [node name="brokentiles16" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 2.23745, -4.47482, -71.3446)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 2.23745, -4.47482, 67.4724)
 
 [node name="brokentiles17" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -64.5229, -4.47482, -71.3036)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -64.5229, -4.47482, 67.5134)
 
 [node name="brokentiles18" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -86.629, -4.47482, -71.3036)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -86.629, -4.47482, 67.5134)
 
 [node name="brokentiles19" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -66.8911, -4.47482, -29.3372)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -66.8911, -4.47482, 109.48)
 
 [node name="brokentiles20" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -44.7851, -4.47482, -29.3372)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -44.7851, -4.47482, 109.48)
 
 [node name="brokentiles21" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.7239, -4.47482, -4.8712)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.7239, -4.47482, 133.946)
 
 [node name="brokentiles22" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.7239, -4.47482, -26.9772)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.7239, -4.47482, 111.84)
 
 [node name="brokentiles23" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -86.6902, -4.47482, -7.23934)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -86.6902, -4.47482, 131.578)
 
 [node name="brokentiles24" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -86.6902, -4.47482, 14.8667)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -86.6902, -4.47482, 153.684)
 
 [node name="brokentiles25" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -22.5439, -4.47482, 14.9279)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -22.5439, -4.47482, 153.745)
 
 [node name="brokentiles26" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.437882, -4.47482, 14.9279)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.437882, -4.47482, 153.745)
 
 [node name="brokentiles27" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -20.1757, -4.47482, -27.0384)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -20.1757, -4.47482, 111.779)
 
 [node name="brokentiles28" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -42.2817, -4.47482, -27.0384)
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -42.2817, -4.47482, 111.779)
 
 [node name="brokentiles29" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -42.343, -4.47482, -51.5045)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -42.343, -4.47482, 87.3125)
 
 [node name="brokentiles30" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -42.343, -4.47482, -29.3985)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -42.343, -4.47482, 109.419)
 
 [node name="brokentiles31" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -0.37666, -4.47482, -49.1363)
+transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -0.37666, -4.47482, 89.6807)
 
 [node name="brokentiles32" parent="Tiles" instance=ExtResource("7_lc0ps")]
-transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -0.376657, -4.47482, -71.2423)
+transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -0.376657, -4.47482, 67.5747)
+
+[node name="OtherTiles" type="Node" parent="."]
+
+[node name="brokentiles" parent="OtherTiles" instance=ExtResource("8_lc0ps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9374, -4.45631, 14.7937)
+
+[node name="brokentiles2" parent="OtherTiles" instance=ExtResource("8_lc0ps")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -36.0147, -4.45631, -4.73073)
+
+[node name="brokentiles3" parent="OtherTiles" instance=ExtResource("8_lc0ps")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.0767, -4.45631, -26.8652)
+
+[node name="brokentiles4" parent="OtherTiles" instance=ExtResource("8_lc0ps")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 7.00055, -4.45631, -7.34077)
