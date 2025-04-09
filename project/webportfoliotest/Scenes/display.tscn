@@ -71,6 +71,12 @@ transform = Transform3D(47.94, 0, -14.2041, 0, 50, 0, 14.2041, 0, 47.94, -71.068
 [node name="low poly rock4" parent="Node" instance=ExtResource("5_xptpx")]
 transform = Transform3D(-34.0143, 0, -36.6473, 0, 50, 0, 36.6473, 0, -34.0143, -10.8923, -25.8824, -110.657)
 
+[node name="low poly rock5" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(-49.4705, 0, -7.25754, 0, 50, 0, 7.25754, 0, -49.4705, -162.54, -25.8824, -105.975)
+
+[node name="low poly rock6" parent="Node" instance=ExtResource("5_xptpx")]
+transform = Transform3D(36.7546, 0, 33.8984, 0, 50, 0, -33.8984, 0, 36.7546, 190.301, -25.8824, -121.801)
+
 [node name="lantern" parent="." instance=ExtResource("6_exjqb")]
 transform = Transform3D(-1.4487e-08, 0, -0.331424, 0, 0.331424, 0, 0.331424, 0, -1.4487e-08, -1.80227, -2.27261, -4.28642)
 script = ExtResource("2_oe3w4")
@@ -86,4 +92,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6958, 0, 0)
 material_override = SubResource("StandardMaterial3D_exjqb")
 
 [node name="tree base" parent="." instance=ExtResource("7_ieymp")]
-transform = Transform3D(-1.55729, -0.0184073, 1.9194, -0.0102188, 2.47169, 0.0154129, -1.91946, 0.00177546, -1.55732, -10.8828, -4.88951, -34.0386)
+transform = Transform3D(-1.55729, -0.0184073, 1.9194, -0.0102188, 2.47169, 0.0154129, -1.91946, 0.00177546, -1.55732, -2.29211, -4.88951, -16.7062)
