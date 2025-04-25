@@ -46,7 +46,7 @@ script = ExtResource("2_oe3w4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09605, 13.7431)
 
 [node name="bettersword" parent="." instance=ExtResource("4_us5k4")]
-transform = Transform3D(3.43117, 0, 0, 0, 3.43117, 0, 0, 0, 3.43117, 3.93457, -0.185922, 0)
+transform = Transform3D(3.43117, 0, 0, 0, 3.43117, 0, 0, 0, 3.43117, 3.35548, -0.185922, 0)
 script = ExtResource("2_oe3w4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
